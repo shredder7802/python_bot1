@@ -4,20 +4,6 @@ class SQL:
     def __init__(self, database):
         self.connection = sqlite3.connect(database)
         self.cursor = self.connection.cursor()
-        self._migrate()
-
-    def _migrate(self):
-        """Добавляет недостающие колонки если их нет"""
-        existing = {row[1] for row in self.cursor.execute("PRAGMA table_info(users)").fetchall()}
-        migrations = {
-            "day":    "ALTER TABLE users ADD COLUMN day INTEGER DEFAULT 0",
-            "mes":    "ALTER TABLE users ADD COLUMN mes INTEGER DEFAULT 0",
-            "notify": "ALTER TABLE users ADD COLUMN notify INTEGER DEFAULT 1",
-        }
-        for col, sql in migrations.items():
-            if col not in existing:
-                self.cursor.execute(sql)
-        self.connection.commit()
 
     # Добавление пользователя в БД
     def add_user(self, id):
@@ -46,11 +32,11 @@ class SQL:
         with self.connection:
             self.cursor.execute(query, (value, id))
 
-    # Получить всех пользователей у которых включена рассылка и сохранён знак
-    def get_notify_users(self):
-        query = "SELECT id, zod FROM users WHERE notify = 1 AND zod IS NOT NULL AND zod != ''"
+
+    def add_event(self, name, comment, time, id):
+        query = "INSERT INTO events (name, comment, time, id) VALUES(?,?,?,?)"
         with self.connection:
-            return self.cursor.execute(query).fetchall()
+            return self.cursor.execute(query, (name, comment, time, id))
 
     def close(self):
         self.connection.close()
