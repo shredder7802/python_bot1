@@ -3,7 +3,7 @@ Telegram-бот планировщик задач (TaskMaster)
 Ссылки
 
 · Бот: https://t.me/g0129i8124_bot
-· Презентация:https://disk.yandex.ru/i/xN0whbH6JPlnDw ссылка на презентацию
+· Презентация:https://disk.yandex.ru/i/xN0whbH6JPlnDw
 
 ---
 
