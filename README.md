@@ -52,44 +52,6 @@ telegram-planner/
 ├── db.db                # База данных SQLite (создаётся автоматически)
 ├── requirements.txt     # Зависимости проекта
 └── README.md            # Документация
-```
-
----
-
-Таблицы баз данных
-
-Таблица users
-
-Поле Тип Описание
-id INTEGER ID пользователя Telegram (PRIMARY KEY)
-status INTEGER Текущий статус диалога (1-5)
-name TEXT Временное название события
-comment TEXT Временный комментарий
-event_time TEXT Временное время события
-
-Таблица events
-
-Поле Тип Описание
-event_id INTEGER ID события (PRIMARY KEY)
-id INTEGER ID пользователя (FOREIGN KEY)
-name TEXT Название события
-comment TEXT Описание события
-time TEXT Дата и время события в формате ДД.ММ.ГГГГ ЧЧ:ММ
-current_time TEXT Время создания события
-
-Таблица reminders
-
-Поле Тип Описание
-id INTEGER ID напоминания (PRIMARY KEY)
-user_id INTEGER ID пользователя
-event_id INTEGER ID события
-title TEXT Название события
-description TEXT Описание события
-event_time TEXT Время события
-remind_at TEXT Когда отправить напоминание
-is_sent INTEGER Статус отправки (0 = не отправлено, 1 = отправлено)
-reminder_type TEXT Тип напоминания (once/daily/weekly/monthly/default)
-
 ---
 
 Инструкция по запуску
